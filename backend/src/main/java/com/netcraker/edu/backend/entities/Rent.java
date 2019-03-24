@@ -30,6 +30,8 @@ public class Rent extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
+
+
     public LocalDate getStart_date() {
         return start_date;
     }
@@ -63,5 +65,5 @@ public class Rent extends BaseEntity {
     }
 
 
-   
+
 }
