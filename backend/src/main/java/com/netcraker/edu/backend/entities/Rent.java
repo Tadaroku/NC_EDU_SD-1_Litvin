@@ -30,7 +30,8 @@ public class Rent extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-
+    @OneToMany(mappedBy = "rent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Car> cars = new HashSet<>();
 
     public LocalDate getStart_date() {
         return start_date;
@@ -64,6 +65,40 @@ public class Rent extends BaseEntity {
         this.user = user;
     }
 
+    public Set<Car> getCars() {
+        return cars;
+    }
 
+    public void setCars(Set<Car> cars) {
+        this.cars = cars;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Rent rent = (Rent) o;
+        return Double.compare(rent.price, price) == 0 &&
+                Objects.equals(start_date, rent.start_date) &&
+                Objects.equals(end_date, rent.end_date) &&
+                Objects.equals(user, rent.user) &&
+                Objects.equals(cars, rent.cars);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), start_date, end_date, price, user, cars);
+    }
+
+    @Override
+    public String toString() {
+        return "Rent{" +
+                "start_date=" + start_date +
+                ", end_date=" + end_date +
+                ", price=" + price +
+                ", user=" + user +
+                ", cars=" + cars +
+                '}';
+    }
 }

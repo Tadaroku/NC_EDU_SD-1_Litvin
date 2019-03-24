@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-public class Role extends BaseEntity{
+public class Role extends BaseEntity {
 
     public Role() {
     }
