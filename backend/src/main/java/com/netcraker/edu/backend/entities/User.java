@@ -15,7 +15,8 @@ public class User extends BaseEntity {
         super(id);
     }
 
-    public User(String email, String password, Info info, Set<Role> roles, Set<Rent> rents) {
+    public User(int id, String email, String password, Info info, Set<Role> roles, Set<Rent> rents) {
+        super(id);
         this.email = email;
         this.password = password;
         this.info = info;
