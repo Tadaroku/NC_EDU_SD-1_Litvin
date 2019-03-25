@@ -16,9 +16,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login/{login}", method = RequestMethod.GET)
-    public ResponseEntity<User> getUserByLogin(@PathVariable(name = "login") String login) {
-        User user = userService.findByEmail(login);
+    @RequestMapping(value = "/find/{email}", method = RequestMethod.GET)
+    public ResponseEntity<User> getUserByEmail(@PathVariable(name = "email") String email) {
+        User user = userService.findByEmail(email);
         return ResponseEntity.ok(user);
     }
 
