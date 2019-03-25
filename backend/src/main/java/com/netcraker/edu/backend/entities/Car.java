@@ -34,6 +34,9 @@ public class Car extends BaseEntity {
     @Column(nullable = false)
     private String provider;
 
+    @Column(nullable = false)
+    private int year_of_issue;
+
     @ManyToOne
     @JoinColumn(name = "rent_id")
     private Rent rent;
@@ -91,6 +94,14 @@ public class Car extends BaseEntity {
         this.provider = provider;
     }
 
+    public int getYear_of_issue() {
+        return year_of_issue;
+    }
+
+    public void setYear_of_issue(int year_of_issue) {
+        this.year_of_issue = year_of_issue;
+    }
+
     public Rent getRent() {
         return rent;
     }
@@ -115,6 +126,7 @@ public class Car extends BaseEntity {
         Car car = (Car) o;
         return Double.compare(car.mileage, mileage) == 0 &&
                 condition == car.condition &&
+                year_of_issue == car.year_of_issue &&
                 status == car.status &&
                 Objects.equals(transmission, car.transmission) &&
                 Objects.equals(color, car.color) &&
@@ -125,7 +137,7 @@ public class Car extends BaseEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), status, mileage, transmission, condition, color, provider, rent, model);
+        return Objects.hash(super.hashCode(), status, mileage, transmission, condition, color, provider, year_of_issue, rent, model);
     }
 
     @Override
@@ -137,6 +149,7 @@ public class Car extends BaseEntity {
                 ", condition=" + condition +
                 ", color='" + color + '\'' +
                 ", provider='" + provider + '\'' +
+                ", year_of_issue=" + year_of_issue +
                 ", rent=" + rent +
                 ", model=" + model +
                 '}';
