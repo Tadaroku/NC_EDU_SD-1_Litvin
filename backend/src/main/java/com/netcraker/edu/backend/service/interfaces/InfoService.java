@@ -12,5 +12,4 @@ public interface InfoService {
 
     List<Info> findAll();
 
-    Info findById(long id);
 }

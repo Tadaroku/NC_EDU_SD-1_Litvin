@@ -10,7 +10,5 @@ public interface ModelService {
 
     Model save(Model model);
 
-    Model findByModelName (String model_name);
-
     void delete(long id);
 }

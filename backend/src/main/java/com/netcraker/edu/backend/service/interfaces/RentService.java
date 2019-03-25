@@ -10,8 +10,6 @@ public interface RentService {
 
     Rent save(Rent rent);
 
-    Rent findByCarId(long id);
-
     void delete(long id);
 
 }

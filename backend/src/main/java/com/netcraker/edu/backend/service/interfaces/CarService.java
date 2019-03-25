@@ -10,7 +10,5 @@ public interface CarService {
 
     Car save(Car car);
 
-    Car findByYearOfIssue(String year_of_issue);
-
     void delete(long id);
 }
