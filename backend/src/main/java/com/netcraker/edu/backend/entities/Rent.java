@@ -12,10 +12,9 @@ public class Rent extends BaseEntity {
     public Rent() {
     }
 
-    public Rent(int id) {
+    public Rent(long id) {
         super(id);
     }
-
 
     @Column(nullable = false)
     private LocalDate start_date;

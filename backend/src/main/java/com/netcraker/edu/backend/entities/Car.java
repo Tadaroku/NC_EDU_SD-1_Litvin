@@ -11,7 +11,7 @@ public class Car extends BaseEntity {
     public Car() {
     }
 
-    public Car(int id) {
+    public Car(long id) {
         super(id);
     }
 

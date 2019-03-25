@@ -11,7 +11,7 @@ public class Model extends BaseEntity {
     public Model() {
     }
 
-    public Model(int id) {
+    public Model(long id) {
         super(id);
     }
 

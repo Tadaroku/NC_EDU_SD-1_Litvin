@@ -12,7 +12,7 @@ public class Info extends BaseEntity {
     public Info() {
     }
 
-    public Info(int id) {
+    public Info(long id) {
         super(id);
     }
 

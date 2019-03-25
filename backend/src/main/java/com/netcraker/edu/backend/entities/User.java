@@ -11,11 +11,11 @@ public class User extends BaseEntity {
     public User() {
     }
 
-    public User(int id) {
+    public User(long id) {
         super(id);
     }
 
-    public User(int id, String email, String password, Info info, Set<Role> roles, Set<Rent> rents) {
+    public User(long id, String email, String password, Info info, Set<Role> roles, Set<Rent> rents) {
         super(id);
         this.email = email;
         this.password = password;
