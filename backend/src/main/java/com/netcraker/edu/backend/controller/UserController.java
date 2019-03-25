@@ -13,8 +13,12 @@ import java.util.List;
 
 public class UserController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping(value = "/find/{email}", method = RequestMethod.GET)
     public ResponseEntity<User> getUserByEmail(@PathVariable(name = "email") String email) {
@@ -22,7 +26,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<User> getAllUsers() {
         return userService.findAll();
     }
