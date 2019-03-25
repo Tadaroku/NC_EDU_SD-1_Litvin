@@ -1,7 +1,6 @@
 package com.netcraker.edu.backend.controller;
 
 import com.netcraker.edu.backend.entities.Info;
-import com.netcraker.edu.backend.entities.Role;
 import com.netcraker.edu.backend.service.interfaces.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +11,7 @@ import java.util.List;
 @RequestMapping("/api/info")
 public class InfoController {
 
-    private final InfoService infoService;
+    private InfoService infoService;
 
     @Autowired
     public InfoController(InfoService infoService) {
