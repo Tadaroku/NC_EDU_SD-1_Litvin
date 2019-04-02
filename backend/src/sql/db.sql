@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `litvin`.`info` (
   `lastname` VARCHAR(45) NULL,
   `phone` VARCHAR(20) NULL,
   `address` VARCHAR(500) NULL,
-  `booking_history` VARCHAR(5000) NULL,
+  `bookingHistory` VARCHAR(5000) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -71,7 +71,7 @@ DROP TABLE IF EXISTS `litvin`.`model` ;
 
 CREATE TABLE IF NOT EXISTS `litvin`.`model` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `model_name` VARCHAR(100) NULL,
+  `modelName` VARCHAR(100) NULL,
   `brand` VARCHAR(100) NULL,
   `description` VARCHAR(5000) NULL,
   PRIMARY KEY (`id`))
@@ -85,8 +85,8 @@ DROP TABLE IF EXISTS `litvin`.`rent` ;
 
 CREATE TABLE IF NOT EXISTS `litvin`.`rent` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `start_date` TIMESTAMP(1) NULL,
-  `end_date` TIMESTAMP(1) NULL,
+  `startDate` TIMESTAMP(1) NULL,
+  `endDate` TIMESTAMP(1) NULL,
   `price` DOUBLE NULL,
   `users_id` INT NOT NULL,
   PRIMARY KEY (`id`),

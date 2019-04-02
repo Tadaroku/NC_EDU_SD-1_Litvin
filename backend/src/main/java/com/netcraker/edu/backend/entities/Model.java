@@ -15,8 +15,8 @@ public class Model extends BaseEntity {
         super(id);
     }
 
-    @Column(nullable = false)
-    private String model_name;
+    @Column(name = "model_name", nullable = false)
+    private String modelName;
 
     @Column(nullable = false)
     private String brand;
@@ -27,12 +27,12 @@ public class Model extends BaseEntity {
     @OneToMany(mappedBy = "model", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Car> cars = new HashSet<>();
 
-    public String getModel_name() {
-        return model_name;
+    public String getModelName() {
+        return modelName;
     }
 
-    public void setModel_name(String model_name) {
-        this.model_name = model_name;
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
     }
 
     public String getBrand() {
@@ -65,7 +65,7 @@ public class Model extends BaseEntity {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Model model = (Model) o;
-        return Objects.equals(model_name, model.model_name) &&
+        return Objects.equals(modelName, model.modelName) &&
                 Objects.equals(brand, model.brand) &&
                 Objects.equals(description, model.description) &&
                 Objects.equals(cars, model.cars);
@@ -73,13 +73,13 @@ public class Model extends BaseEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), model_name, brand, description, cars);
+        return Objects.hash(super.hashCode(), modelName, brand, description, cars);
     }
 
     @Override
     public String toString() {
         return "Model{" +
-                "model_name='" + model_name + '\'' +
+                "modelName='" + modelName + '\'' +
                 ", brand='" + brand + '\'' +
                 ", description='" + description + '\'' +
                 ", cars=" + cars +

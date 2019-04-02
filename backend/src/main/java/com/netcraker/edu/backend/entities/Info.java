@@ -25,11 +25,11 @@ public class Info extends BaseEntity {
     @Column(nullable = false)
     private String lastname;
 
-    @Column
-    private String booking_history;
+    @Column(name = "booking_history")
+    private String bookingHistory;
 
-    @Column(nullable = false)
-    private String phone_number;
+    @Column(name = "phone_number", nullable = false)
+    private String phoneNumber;
 
     @Column(nullable = false)
     private String address;
@@ -70,20 +70,20 @@ public class Info extends BaseEntity {
         this.lastname = lastname;
     }
 
-    public String getBooking_history() {
-        return booking_history;
+    public String getBookingHistory() {
+        return bookingHistory;
     }
 
-    public void setBooking_history(String booking_history) {
-        this.booking_history = booking_history;
+    public void setBookingHistory(String bookingHistory) {
+        this.bookingHistory = bookingHistory;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getAddress() {
@@ -103,14 +103,14 @@ public class Info extends BaseEntity {
                 Objects.equals(name, info.name) &&
                 Objects.equals(surname, info.surname) &&
                 Objects.equals(lastname, info.lastname) &&
-                Objects.equals(booking_history, info.booking_history) &&
-                Objects.equals(phone_number, info.phone_number) &&
+                Objects.equals(bookingHistory, info.bookingHistory) &&
+                Objects.equals(phoneNumber, info.phoneNumber) &&
                 Objects.equals(address, info.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(user, name, surname, lastname, booking_history, phone_number, address);
+        return Objects.hash(user, name, surname, lastname, bookingHistory, phoneNumber, address);
     }
 
     @Override
@@ -120,8 +120,8 @@ public class Info extends BaseEntity {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", lastname='" + lastname + '\'' +
-                ", booking_history='" + booking_history + '\'' +
-                ", phone_number='" + phone_number + '\'' +
+                ", bookingHistory='" + bookingHistory + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\'' +
                 '}';
     }

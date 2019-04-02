@@ -18,18 +18,18 @@ public class Role extends BaseEntity {
         super(id);
     }
 
-    @Column
-    private String role_name;
+    @Column(name = "role_name")
+    private String roleName;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
     private Set<User> users = new HashSet<>();
 
-    public String getRole_name() {
-        return role_name;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRole_name(String role_name) {
-        this.role_name = role_name;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     public Set<User> getUsers() {
@@ -45,19 +45,19 @@ public class Role extends BaseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Role role = (Role) o;
-        return Objects.equals(role_name, role.role_name) &&
+        return Objects.equals(roleName, role.roleName) &&
                 Objects.equals(users, role.users);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(role_name, users);
+        return Objects.hash(roleName, users);
     }
 
     @Override
     public String toString() {
         return "Role{" +
-                "role_name='" + role_name + '\'' +
+                "roleName='" + roleName + '\'' +
                 ", users=" + users +
                 '}';
     }

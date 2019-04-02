@@ -16,11 +16,11 @@ public class Rent extends BaseEntity {
         super(id);
     }
 
-    @Column(nullable = false)
-    private LocalDate start_date;
+    @Column(name = "start_date", nullable = false)
+    private LocalDate startDate;
 
-    @Column(nullable = false)
-    private LocalDate end_date;
+    @Column(name = "end_date", nullable = false)
+    private LocalDate endDate;
 
     @Column(nullable = false)
     private double price;
@@ -32,20 +32,20 @@ public class Rent extends BaseEntity {
     @OneToMany(mappedBy = "rent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Car> cars = new HashSet<>();
 
-    public LocalDate getStart_date() {
-        return start_date;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setStart_date(LocalDate start_date) {
-        this.start_date = start_date;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
-    public LocalDate getEnd_date() {
-        return end_date;
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
-    public void setEnd_date(LocalDate end_date) {
-        this.end_date = end_date;
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public double getPrice() {
@@ -79,22 +79,22 @@ public class Rent extends BaseEntity {
         if (!super.equals(o)) return false;
         Rent rent = (Rent) o;
         return Double.compare(rent.price, price) == 0 &&
-                Objects.equals(start_date, rent.start_date) &&
-                Objects.equals(end_date, rent.end_date) &&
+                Objects.equals(startDate, rent.startDate) &&
+                Objects.equals(endDate, rent.endDate) &&
                 Objects.equals(user, rent.user) &&
                 Objects.equals(cars, rent.cars);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), start_date, end_date, price, user, cars);
+        return Objects.hash(super.hashCode(), startDate, endDate, price, user, cars);
     }
 
     @Override
     public String toString() {
         return "Rent{" +
-                "start_date=" + start_date +
-                ", end_date=" + end_date +
+                "startDate=" + startDate +
+                ", endDate=" + endDate +
                 ", price=" + price +
                 ", user=" + user +
                 ", cars=" + cars +

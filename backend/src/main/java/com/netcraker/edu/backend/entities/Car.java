@@ -34,8 +34,8 @@ public class Car extends BaseEntity {
     @Column(nullable = false)
     private String provider;
 
-    @Column(nullable = false)
-    private int year_of_issue;
+    @Column(name = "year_of_issue", nullable = false)
+    private int yearOfIssue;
 
     @ManyToOne
     @JoinColumn(name = "rent_id")
@@ -69,7 +69,6 @@ public class Car extends BaseEntity {
         this.transmission = transmission;
     }
 
-
     public boolean isCondition() {
         return condition;
     }
@@ -94,12 +93,12 @@ public class Car extends BaseEntity {
         this.provider = provider;
     }
 
-    public int getYear_of_issue() {
-        return year_of_issue;
+    public int getYearOfIssue() {
+        return yearOfIssue;
     }
 
-    public void setYear_of_issue(int year_of_issue) {
-        this.year_of_issue = year_of_issue;
+    public void setYearOfIssue(int yearOfIssue) {
+        this.yearOfIssue = yearOfIssue;
     }
 
     public Rent getRent() {
@@ -126,7 +125,7 @@ public class Car extends BaseEntity {
         Car car = (Car) o;
         return Double.compare(car.mileage, mileage) == 0 &&
                 condition == car.condition &&
-                year_of_issue == car.year_of_issue &&
+                yearOfIssue == car.yearOfIssue &&
                 status == car.status &&
                 Objects.equals(transmission, car.transmission) &&
                 Objects.equals(color, car.color) &&
@@ -137,7 +136,7 @@ public class Car extends BaseEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), status, mileage, transmission, condition, color, provider, year_of_issue, rent, model);
+        return Objects.hash(super.hashCode(), status, mileage, transmission, condition, color, provider, yearOfIssue, rent, model);
     }
 
     @Override
@@ -149,7 +148,7 @@ public class Car extends BaseEntity {
                 ", condition=" + condition +
                 ", color='" + color + '\'' +
                 ", provider='" + provider + '\'' +
-                ", year_of_issue=" + year_of_issue +
+                ", yearOfIssue=" + yearOfIssue +
                 ", rent=" + rent +
                 ", model=" + model +
                 '}';
