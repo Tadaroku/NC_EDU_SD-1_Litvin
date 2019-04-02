@@ -19,6 +19,9 @@ public class Car extends BaseEntity {
     @Column(nullable = false)
     private Status status;
 
+    @Column(name = "engine_type", nullable = false)
+    private String engineType;
+
     @Column(nullable = false)
     private double mileage;
 
@@ -117,6 +120,14 @@ public class Car extends BaseEntity {
         this.model = model;
     }
 
+    public String getEngineType() {
+        return engineType;
+    }
+
+    public void setEngineType(String engineType) {
+        this.engineType = engineType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -127,6 +138,7 @@ public class Car extends BaseEntity {
                 condition == car.condition &&
                 yearOfIssue == car.yearOfIssue &&
                 status == car.status &&
+                Objects.equals(engineType, car.engineType) &&
                 Objects.equals(transmission, car.transmission) &&
                 Objects.equals(color, car.color) &&
                 Objects.equals(provider, car.provider) &&
@@ -136,13 +148,14 @@ public class Car extends BaseEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), status, mileage, transmission, condition, color, provider, yearOfIssue, rent, model);
+        return Objects.hash(super.hashCode(), status, engineType, mileage, transmission, condition, color, provider, yearOfIssue, rent, model);
     }
 
     @Override
     public String toString() {
         return "Car{" +
                 "status=" + status +
+                ", engineType='" + engineType + '\'' +
                 ", mileage=" + mileage +
                 ", transmission='" + transmission + '\'' +
                 ", condition=" + condition +
