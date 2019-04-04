@@ -11,4 +11,6 @@ public interface ModelService {
     Model save(Model model);
 
     void delete(long id);
+
+    List<Model> findByBrand(String brand);
 }

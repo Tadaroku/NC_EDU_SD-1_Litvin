@@ -3,6 +3,7 @@ package com.netcraker.edu.backend.controller;
 import com.netcraker.edu.backend.entities.Info;
 import com.netcraker.edu.backend.service.interfaces.InfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,5 +32,11 @@ public class InfoController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteInfo(@PathVariable(name = "id") Long id) {
         infoService.delete(id);
+    }
+
+    @RequestMapping(value = "/find/{phoneNumber}", method = RequestMethod.GET)
+    public ResponseEntity<Info> getInfoByPhoneNumber(@PathVariable(name = "phoneNumber") String phoneNumber) {
+        Info info = infoService.findByPhoneNumber(phoneNumber);
+        return ResponseEntity.ok(info);
     }
 }

@@ -28,4 +28,10 @@ public class RentServiceImpl implements RentService {
     public void delete(long id) {
         rentRepository.deleteById(id);
     }
+
+    @Override
+    public List<Rent> findRentsByPriceBetween(double startingPrice, double finalPrice) {
+        return rentRepository.findRentsByPriceBetween(startingPrice, finalPrice);
+    }
 }
+

@@ -32,9 +32,5 @@ public class RoleController {
     public void deleteRole(@PathVariable(name = "id") Long id) {
         roleService.delete(id);
     }
-
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    public Role updateRole(@PathVariable(name = "id") Role role) {
-        return roleService.save(role);
-    }
 }
+

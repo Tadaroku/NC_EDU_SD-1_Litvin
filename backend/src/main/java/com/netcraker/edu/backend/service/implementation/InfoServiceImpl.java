@@ -28,4 +28,9 @@ public class InfoServiceImpl implements InfoService {
     public List<Info> findAll() {
         return infoRepository.findAll();
     }
+
+    @Override
+    public Info findByPhoneNumber(String phoneNumber) {
+        return infoRepository.findByPhoneNumber(phoneNumber);
+    }
 }

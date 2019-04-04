@@ -28,4 +28,9 @@ public class ModelServiceImpl implements ModelService {
     public void delete(long id) {
         modelRepository.deleteById(id);
     }
+
+    @Override
+    public List<Model> findByBrand(String brand) {
+        return modelRepository.findByBrand(brand);
+    }
 }

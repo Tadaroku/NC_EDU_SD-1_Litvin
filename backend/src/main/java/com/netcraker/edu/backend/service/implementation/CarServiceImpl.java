@@ -13,6 +13,7 @@ public class CarServiceImpl implements CarService {
 
     @Autowired
     private CarRepository carRepository;
+
     @Override
 
     public List<Car> findAll() {
@@ -27,5 +28,35 @@ public class CarServiceImpl implements CarService {
     @Override
     public void delete(long id) {
         carRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Car> findByYearOfIssue(int yearOfIssue) {
+        return carRepository.findByYearOfIssue(yearOfIssue);
+    }
+
+    @Override
+    public List<Car> findByColor(String color) {
+        return carRepository.findByColor(color);
+    }
+
+    @Override
+    public List<Car> findByProvider(String provider) {
+        return carRepository.findByProvider(provider);
+    }
+
+    @Override
+    public List<Car> findByMileageBetween(double startingMileage, double finalMileage) {
+        return carRepository.findByMileageBetween(startingMileage, finalMileage);
+    }
+
+    @Override
+    public List<Car> findByEngineType(String engineType) {
+        return carRepository.findByEngineType(engineType);
+    }
+
+    @Override
+    public List<Car> findByTransmission(String transmission) {
+        return carRepository.findByTransmission(transmission);
     }
 }

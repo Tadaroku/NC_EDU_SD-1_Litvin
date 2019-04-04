@@ -12,4 +12,5 @@ public interface RentService {
 
     void delete(long id);
 
+    List<Rent> findRentsByPriceBetween(double startingPrice, double finalPrice);
 }

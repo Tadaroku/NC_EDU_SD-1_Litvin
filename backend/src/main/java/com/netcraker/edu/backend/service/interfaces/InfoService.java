@@ -12,4 +12,5 @@ public interface InfoService {
 
     List<Info> findAll();
 
+    Info findByPhoneNumber (String phoneNumber);
 }
