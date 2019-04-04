@@ -1,0 +1,29 @@
+<h1 style="text-align: center">Car Renters</h1>
+<br>
+<br>
+<br>
+<div class="container">
+  <table class="table table-bordered table-inverse">
+    <tr>
+      <th>Renter Name</th>
+      <th>Email</th>
+      <th>Model</th>
+      <th class="text-right">Rental Price</th>
+    </tr>
+    <tr *ngFor="let car of cars">
+      <td>
+        <a [routerLink]="['/root/view', car.id]"> {{car.name}}</a>
+
+      </td>
+      <td>
+        {{car.email}}
+      </td>
+      <td>
+        {{car.model}}
+      </td>
+      <td class="text-right">
+        {{car.rentalPrice}}
+      </td>
+    </tr>
+  </table>
+</div>
