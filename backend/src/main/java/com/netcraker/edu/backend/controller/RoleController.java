@@ -18,7 +18,7 @@ public class RoleController {
         this.roleService = roleService;
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Role> getAllRoles() {
         return roleService.findAll();
     }

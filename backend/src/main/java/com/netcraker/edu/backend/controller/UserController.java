@@ -25,7 +25,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @RequestMapping(value = "all", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<User> getAllUsers() {
         return userService.findAll();
     }

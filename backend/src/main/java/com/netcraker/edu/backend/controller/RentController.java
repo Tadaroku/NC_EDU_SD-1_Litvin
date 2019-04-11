@@ -20,7 +20,7 @@ public class RentController {
         this.rentService = rentService;
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Rent> getAllRents() {
         return rentService.findAll();
     }
@@ -35,8 +35,8 @@ public class RentController {
         rentService.delete(id);
     }
 
-    @RequestMapping(value = "/find/{price}", method = RequestMethod.GET)
-    public ResponseEntity<List<Rent>> getRentByPrice(@PathVariable(name = "price") double startingPrice, double finalPrice) {
+    @RequestMapping(value = "/find", method = RequestMethod.GET)
+    public ResponseEntity<List<Rent>> getRentByPrice(@RequestParam(name = "before") double startingPrice, @RequestParam(name = "after") double finalPrice) {
         List<Rent> rents = rentService.findRentsByPriceBetween(startingPrice, finalPrice);
         return new ResponseEntity<>(rents, HttpStatus.ACCEPTED);
     }

@@ -20,7 +20,7 @@ public class CarController {
         this.carService = carService;
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Car> getAllCars() {
         return carService.findAll();
     }
@@ -35,37 +35,37 @@ public class CarController {
         carService.delete(id);
     }
 
-    @RequestMapping(value = "/find/{yearOfIssue}", method = RequestMethod.GET)
+    @RequestMapping(value = "/findYear/{yearOfIssue}", method = RequestMethod.GET)
     public ResponseEntity<List<Car>> getCarByYearOfIssue(@PathVariable(name = "yearOfIssue") int yearOfIssue) {
         List<Car> cars = carService.findByYearOfIssue(yearOfIssue);
         return new ResponseEntity<>(cars, HttpStatus.ACCEPTED);
     }
 
-    @RequestMapping(value = "/find/{color}", method = RequestMethod.GET)
+    @RequestMapping(value = "/findColor/{color}", method = RequestMethod.GET)
     public ResponseEntity<List<Car>> getCarByColor(@PathVariable(name = "color") String color) {
         List<Car> cars = carService.findByColor(color);
         return new ResponseEntity<>(cars, HttpStatus.ACCEPTED);
     }
 
-    @RequestMapping(value = "/find/{mileage}", method = RequestMethod.GET)
-    public ResponseEntity<List<Car>> getCarByMileage(@PathVariable(name = "mileage") double startingMileage, double finalMileage) {
+    @RequestMapping(value = "/find", method = RequestMethod.GET)
+    public ResponseEntity<List<Car>> getCarByMileage(@RequestParam(name = "before") double startingMileage, @RequestParam(name = "after") double finalMileage) {
         List<Car> cars = carService.findByMileageBetween(startingMileage, finalMileage);
         return new ResponseEntity<>(cars, HttpStatus.ACCEPTED);
     }
 
-    @RequestMapping(value = "/find/{provider}", method = RequestMethod.GET)
+    @RequestMapping(value = "/findProvider/{provider}", method = RequestMethod.GET)
     public ResponseEntity<List<Car>> getCarByProvider(@PathVariable(name = "provider") String provider) {
         List<Car> cars = carService.findByProvider(provider);
         return new ResponseEntity<>(cars, HttpStatus.ACCEPTED);
     }
 
-    @RequestMapping(value = "/find/{engineType}", method = RequestMethod.GET)
+    @RequestMapping(value = "/findEngineType/{engineType}", method = RequestMethod.GET)
     public ResponseEntity<List<Car>> getCarByEngineType(@PathVariable(name = "engineType") String engineType) {
         List<Car> cars = carService.findByEngineType(engineType);
         return new ResponseEntity<>(cars, HttpStatus.ACCEPTED);
     }
 
-    @RequestMapping(value = "/find/{transmission}", method = RequestMethod.GET)
+    @RequestMapping(value = "/findTransmission/{transmission}", method = RequestMethod.GET)
     public ResponseEntity<List<Car>> getCarByTransmission(@PathVariable(name = "transmission") String transmission) {
         List<Car> cars = carService.findByTransmission(transmission);
         return new ResponseEntity<>(cars, HttpStatus.ACCEPTED);

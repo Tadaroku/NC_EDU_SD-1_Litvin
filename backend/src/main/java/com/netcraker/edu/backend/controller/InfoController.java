@@ -19,7 +19,7 @@ public class InfoController {
         this.infoService = infoService;
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Info> getAllInfos() {
         return infoService.findAll();
     }

@@ -20,7 +20,7 @@ public class ModelController {
         this.modelService = modelService;
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Model> getAllModels() {
         return modelService.findAll();
     }
