@@ -1,5 +1,7 @@
 package com.netcraker.edu.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -51,6 +53,7 @@ public class Model extends BaseEntity {
         this.description = description;
     }
 
+    @JsonIgnore
     public Set<Car> getCars() {
         return cars;
     }
@@ -67,13 +70,12 @@ public class Model extends BaseEntity {
         Model model = (Model) o;
         return Objects.equals(modelName, model.modelName) &&
                 Objects.equals(brand, model.brand) &&
-                Objects.equals(description, model.description) &&
-                Objects.equals(cars, model.cars);
+                Objects.equals(description, model.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), modelName, brand, description, cars);
+        return Objects.hash(super.hashCode(), modelName, brand, description);
     }
 
     @Override
@@ -82,7 +84,6 @@ public class Model extends BaseEntity {
                 "modelName='" + modelName + '\'' +
                 ", brand='" + brand + '\'' +
                 ", description='" + description + '\'' +
-                ", cars=" + cars +
                 '}';
     }
 }

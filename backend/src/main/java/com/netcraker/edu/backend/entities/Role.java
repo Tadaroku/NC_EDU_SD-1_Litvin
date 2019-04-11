@@ -1,5 +1,7 @@
 package com.netcraker.edu.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,7 +23,7 @@ public class Role extends BaseEntity {
     @Column(name = "role_name")
     private String roleName;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
     private Set<User> users = new HashSet<>();
 
     public String getRoleName() {
@@ -32,6 +34,7 @@ public class Role extends BaseEntity {
         this.roleName = roleName;
     }
 
+    @JsonIgnore
     public Set<User> getUsers() {
         return users;
     }
@@ -44,21 +47,20 @@ public class Role extends BaseEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Role role = (Role) o;
-        return Objects.equals(roleName, role.roleName) &&
-                Objects.equals(users, role.users);
+        return Objects.equals(roleName, role.roleName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roleName, users);
+        return Objects.hash(super.hashCode(), roleName);
     }
 
     @Override
     public String toString() {
         return "Role{" +
                 "roleName='" + roleName + '\'' +
-                ", users=" + users +
                 '}';
     }
 }

@@ -1,5 +1,6 @@
 package com.netcraker.edu.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.netcraker.edu.backend.entities.enums.Status;
 
 import javax.persistence.*;
@@ -56,6 +57,14 @@ public class Car extends BaseEntity {
         this.status = status;
     }
 
+    public String getEngineType() {
+        return engineType;
+    }
+
+    public void setEngineType(String engineType) {
+        this.engineType = engineType;
+    }
+
     public double getMileage() {
         return mileage;
     }
@@ -104,6 +113,7 @@ public class Car extends BaseEntity {
         this.yearOfIssue = yearOfIssue;
     }
 
+    @JsonIgnore
     public Rent getRent() {
         return rent;
     }
@@ -112,20 +122,13 @@ public class Car extends BaseEntity {
         this.rent = rent;
     }
 
+    @JsonIgnore
     public Model getModel() {
         return model;
     }
 
     public void setModel(Model model) {
         this.model = model;
-    }
-
-    public String getEngineType() {
-        return engineType;
-    }
-
-    public void setEngineType(String engineType) {
-        this.engineType = engineType;
     }
 
     @Override
@@ -141,14 +144,12 @@ public class Car extends BaseEntity {
                 Objects.equals(engineType, car.engineType) &&
                 Objects.equals(transmission, car.transmission) &&
                 Objects.equals(color, car.color) &&
-                Objects.equals(provider, car.provider) &&
-                Objects.equals(rent, car.rent) &&
-                Objects.equals(model, car.model);
+                Objects.equals(provider, car.provider);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), status, engineType, mileage, transmission, condition, color, provider, yearOfIssue, rent, model);
+        return Objects.hash(super.hashCode(), status, engineType, mileage, transmission, condition, color, provider, yearOfIssue);
     }
 
     @Override
@@ -162,8 +163,6 @@ public class Car extends BaseEntity {
                 ", color='" + color + '\'' +
                 ", provider='" + provider + '\'' +
                 ", yearOfIssue=" + yearOfIssue +
-                ", rent=" + rent +
-                ", model=" + model +
                 '}';
     }
 }

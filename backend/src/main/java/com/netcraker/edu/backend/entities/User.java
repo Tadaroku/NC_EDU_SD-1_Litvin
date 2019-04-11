@@ -1,5 +1,7 @@
 package com.netcraker.edu.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -57,6 +59,7 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
+    @JsonIgnore
     public Info getInfo() {
         return info;
     }
@@ -65,6 +68,7 @@ public class User extends BaseEntity {
         this.info = info;
     }
 
+    @JsonIgnore
     public Set<Role> getRoles() {
         return roles;
     }
@@ -73,6 +77,7 @@ public class User extends BaseEntity {
         this.roles = roles;
     }
 
+    @JsonIgnore
     public Set<Rent> getRents() {
         return rents;
     }
@@ -85,17 +90,15 @@ public class User extends BaseEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         User user = (User) o;
         return Objects.equals(email, user.email) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(info, user.info) &&
-                Objects.equals(roles, user.roles) &&
-                Objects.equals(rents, user.rents);
+                Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(email, password, info, roles, rents);
+        return Objects.hash(super.hashCode(), email, password);
     }
 
     @Override
@@ -103,9 +106,6 @@ public class User extends BaseEntity {
         return "User{" +
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", info=" + info +
-                ", roles=" + roles +
-                ", rents=" + rents +
                 '}';
     }
 }

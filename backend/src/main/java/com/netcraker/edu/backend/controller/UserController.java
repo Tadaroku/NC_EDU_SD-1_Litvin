@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
-
 public class UserController {
 
     private UserService userService;
@@ -26,7 +25,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "all", method = RequestMethod.GET)
     public List<User> getAllUsers() {
         return userService.findAll();
     }

@@ -1,5 +1,7 @@
 package com.netcraker.edu.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -56,6 +58,7 @@ public class Rent extends BaseEntity {
         this.price = price;
     }
 
+    @JsonIgnore
     public User getUser() {
         return user;
     }
@@ -64,6 +67,7 @@ public class Rent extends BaseEntity {
         this.user = user;
     }
 
+    @JsonIgnore
     public Set<Car> getCars() {
         return cars;
     }
@@ -80,14 +84,12 @@ public class Rent extends BaseEntity {
         Rent rent = (Rent) o;
         return Double.compare(rent.price, price) == 0 &&
                 Objects.equals(startDate, rent.startDate) &&
-                Objects.equals(endDate, rent.endDate) &&
-                Objects.equals(user, rent.user) &&
-                Objects.equals(cars, rent.cars);
+                Objects.equals(endDate, rent.endDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), startDate, endDate, price, user, cars);
+        return Objects.hash(super.hashCode(), startDate, endDate, price);
     }
 
     @Override
@@ -96,8 +98,6 @@ public class Rent extends BaseEntity {
                 "startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", price=" + price +
-                ", user=" + user +
-                ", cars=" + cars +
                 '}';
     }
 }

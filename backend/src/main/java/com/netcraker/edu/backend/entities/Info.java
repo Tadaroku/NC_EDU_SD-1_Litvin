@@ -1,5 +1,7 @@
 package com.netcraker.edu.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -37,14 +39,6 @@ public class Info extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "info_id")
     private User user;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public String getName() {
         return name;
@@ -94,13 +88,22 @@ public class Info extends BaseEntity {
         this.address = address;
     }
 
+    @JsonIgnore
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Info info = (Info) o;
-        return Objects.equals(user, info.user) &&
-                Objects.equals(name, info.name) &&
+        return Objects.equals(name, info.name) &&
                 Objects.equals(surname, info.surname) &&
                 Objects.equals(lastname, info.lastname) &&
                 Objects.equals(bookingHistory, info.bookingHistory) &&
@@ -110,14 +113,13 @@ public class Info extends BaseEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(user, name, surname, lastname, bookingHistory, phoneNumber, address);
+        return Objects.hash(super.hashCode(), name, surname, lastname, bookingHistory, phoneNumber, address);
     }
 
     @Override
     public String toString() {
         return "Info{" +
-                "user=" + user +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", bookingHistory='" + bookingHistory + '\'' +
