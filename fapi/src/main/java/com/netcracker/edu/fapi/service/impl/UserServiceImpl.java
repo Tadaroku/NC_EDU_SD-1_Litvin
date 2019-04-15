@@ -1,7 +1,7 @@
-package com.netcracker.edu.service.impl;
+package com.netcracker.edu.fapi.service.impl;
 
-import com.netcracker.edu.models.User;
-import com.netcracker.edu.service.UserService;
+import com.netcracker.edu.fapi.models.User;
+import com.netcracker.edu.fapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,7 +19,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Value("${backend.server.url}")
     private String backendServerUrl;
-
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -51,6 +50,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         restTemplate.delete(backendServerUrl + "users/" + id);
     }
 
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = findByEmail(email);
@@ -65,5 +65,5 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
         return authorities;
     }
-}
 
+}

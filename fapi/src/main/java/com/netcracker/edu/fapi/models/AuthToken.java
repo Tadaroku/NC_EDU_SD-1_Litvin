@@ -1,7 +1,6 @@
-package com.netcracker.edu.models;
+package com.netcracker.edu.fapi.models;
 
 public class AuthToken {
-
     private String token;
 
     public AuthToken() {

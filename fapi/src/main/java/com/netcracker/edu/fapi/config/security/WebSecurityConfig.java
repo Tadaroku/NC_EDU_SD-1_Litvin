@@ -1,7 +1,7 @@
-package com.netcracker.edu.config.security;
+package com.netcracker.edu.fapi.config.security;
 
-import com.netcracker.edu.security.JwtAuthenticationEntryPoint;
-import com.netcracker.edu.security.JwtAuthenticationFilter;
+import com.netcracker.edu.fapi.security.JwtAuthenticationEntryPoint;
+import com.netcracker.edu.fapi.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,12 +41,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public JwtAuthenticationFilter authenticationTokenFilterBean() {
+    public JwtAuthenticationFilter authenticationTokenFilterBean(){
         return new JwtAuthenticationFilter();
     }
 
     @Bean
-    public BCryptPasswordEncoder encoder() {
+    public BCryptPasswordEncoder encoder(){
         return new BCryptPasswordEncoder();
     }
 

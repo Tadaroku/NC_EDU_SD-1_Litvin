@@ -1,4 +1,4 @@
-package com.netcracker.edu.models;
+package com.netcracker.edu.fapi.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
