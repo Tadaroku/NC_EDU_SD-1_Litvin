@@ -8,9 +8,9 @@ public interface InfoService {
 
     Info save(Info info);
 
-    void delete(long id);
+    void delete(Long id);
 
     List<Info> findAll();
 
-    Info findByPhoneNumber (String phoneNumber);
+    Info findByPhoneNumber(String phoneNumber);
 }

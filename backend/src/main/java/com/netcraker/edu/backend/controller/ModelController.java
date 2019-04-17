@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/model")
@@ -39,5 +40,15 @@ public class ModelController {
     public ResponseEntity<List<Model>> getModelByBrand(@PathVariable(name = "brand") String brand) {
         List<Model> models = modelService.findByBrand(brand);
         return new ResponseEntity<>(models, HttpStatus.ACCEPTED);
+    }
+
+    @SuppressWarnings("Duplicates")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Model> getModelById(@PathVariable(name = "id") Long id) {
+        Optional<Model> model = modelService.findById(id);
+        if (!model.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(model.get());
     }
 }

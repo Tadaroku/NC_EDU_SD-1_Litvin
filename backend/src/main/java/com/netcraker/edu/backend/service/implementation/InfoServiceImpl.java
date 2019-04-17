@@ -20,7 +20,7 @@ public class InfoServiceImpl implements InfoService {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         infoRepository.deleteById(id);
     }
 

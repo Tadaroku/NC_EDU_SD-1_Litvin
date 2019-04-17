@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/car")
@@ -69,5 +70,15 @@ public class CarController {
     public ResponseEntity<List<Car>> getCarByTransmission(@PathVariable(name = "transmission") String transmission) {
         List<Car> cars = carService.findByTransmission(transmission);
         return new ResponseEntity<>(cars, HttpStatus.ACCEPTED);
+    }
+
+    @SuppressWarnings("Duplicates")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Car> getCarById(@PathVariable(name = "id") Long id) {
+        Optional<Car> car = carService.findById(id);
+        if (!car.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(car.get());
     }
 }

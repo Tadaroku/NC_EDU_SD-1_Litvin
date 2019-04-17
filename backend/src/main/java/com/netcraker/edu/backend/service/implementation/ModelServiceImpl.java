@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ModelServiceImpl implements ModelService {
@@ -25,12 +26,17 @@ public class ModelServiceImpl implements ModelService {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         modelRepository.deleteById(id);
     }
 
     @Override
     public List<Model> findByBrand(String brand) {
         return modelRepository.findByBrand(brand);
+    }
+
+    @Override
+    public Optional<Model> findById(Long id) {
+        return modelRepository.findById(id);
     }
 }

@@ -26,7 +26,7 @@ public class RentServiceImpl implements RentService {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         rentRepository.deleteById(id);
     }
 
