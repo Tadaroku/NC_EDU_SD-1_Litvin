@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/rent")
@@ -40,4 +41,15 @@ public class RentController {
         List<Rent> rents = rentService.findRentsByPriceBetween(startingPrice, finalPrice);
         return new ResponseEntity<>(rents, HttpStatus.ACCEPTED);
     }
+
+    @SuppressWarnings("Duplicates")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Rent> getRentById(@PathVariable(name = "id") Long id) {
+        Optional<Rent>rent = rentService.findById(id);
+        if (!rent.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(rent.get());
+    }
+
 }

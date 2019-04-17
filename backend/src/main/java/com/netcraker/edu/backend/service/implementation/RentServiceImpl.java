@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RentServiceImpl implements RentService {
@@ -32,6 +33,11 @@ public class RentServiceImpl implements RentService {
     @Override
     public List<Rent> findRentsByPriceBetween(double startingPrice, double finalPrice) {
         return rentRepository.findRentsByPriceBetween(startingPrice, finalPrice);
+    }
+
+    @Override
+    public Optional<Rent> findById(Long id) {
+        return rentRepository.findById(id);
     }
 }
 
