@@ -34,4 +34,11 @@ public class UserController {
     public User saveUser(@RequestBody User user) {
         return userService.save(user);
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteUser(@PathVariable(name = "id") Long id) {
+        userService.delete(id);
+    }
+
+
 }
