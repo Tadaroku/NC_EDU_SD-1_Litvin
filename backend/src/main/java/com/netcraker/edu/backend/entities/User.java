@@ -17,13 +17,16 @@ public class User extends BaseEntity {
         super(id);
     }
 
-    public User(long id, String email, String password, Info info, Set<Role> roles, Set<Rent> rents) {
+    public User(long id, String email, String password, String name, String surname, String lastname, String bookingHistory, String phoneNumber, String address) {
         super(id);
         this.email = email;
         this.password = password;
-        this.info = info;
-        this.roles = roles;
-        this.rents = rents;
+        this.name = name;
+        this.surname = surname;
+        this.lastname = lastname;
+        this.bookingHistory = bookingHistory;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 
     @Column(nullable = false)
@@ -32,8 +35,23 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Info info;
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String surname;
+
+    @Column(nullable = false)
+    private String lastname;
+
+    @Column(name = "booking_history")
+    private String bookingHistory;
+
+    @Column(name = "phone_number", nullable = false)
+    private String phoneNumber;
+
+    @Column(nullable = false)
+    private String address;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "role_to_user", joinColumns = @JoinColumn(name = "user_id"),
@@ -59,13 +77,52 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
-    @JsonIgnore
-    public Info getInfo() {
-        return info;
+    public String getName() {
+        return name;
     }
 
-    public void setInfo(Info info) {
-        this.info = info;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getBookingHistory() {
+        return bookingHistory;
+    }
+
+    public void setBookingHistory(String bookingHistory) {
+        this.bookingHistory = bookingHistory;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @JsonIgnore
@@ -93,12 +150,18 @@ public class User extends BaseEntity {
         if (!super.equals(o)) return false;
         User user = (User) o;
         return Objects.equals(email, user.email) &&
-                Objects.equals(password, user.password);
+                Objects.equals(password, user.password) &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(surname, user.surname) &&
+                Objects.equals(lastname, user.lastname) &&
+                Objects.equals(bookingHistory, user.bookingHistory) &&
+                Objects.equals(phoneNumber, user.phoneNumber) &&
+                Objects.equals(address, user.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), email, password);
+        return Objects.hash(super.hashCode(), email, password, name, surname, lastname, bookingHistory, phoneNumber, address);
     }
 
     @Override
@@ -106,6 +169,12 @@ public class User extends BaseEntity {
         return "User{" +
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", bookingHistory='" + bookingHistory + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 }
