@@ -1,6 +1,5 @@
 package com.netcracker.edu.fapi.models;
 
-//Model for user login process
 public class LoginUser {
 
     private String email;
