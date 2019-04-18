@@ -45,9 +45,15 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(backendServerUrl + "users/" + id);
+        restTemplate.delete(backendServerUrl + "/api/user/" + id);
+    }
+
+    @Override
+    public User findById(Long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(backendServerUrl + "/api/user/" + id, User.class);
     }
 
 

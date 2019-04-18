@@ -42,6 +42,7 @@ public class UserController {
         userService.delete(id);
     }
 
+    @SuppressWarnings("Duplicates")
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public ResponseEntity<User> getUserById(@PathVariable(name = "id") Long id){
         Optional<User> user = userService.findById(id);
