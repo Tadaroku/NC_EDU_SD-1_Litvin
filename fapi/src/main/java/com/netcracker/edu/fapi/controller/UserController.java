@@ -13,7 +13,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/v1/user")
 public class UserController {
 
     @Autowired
@@ -28,17 +28,17 @@ public class UserController {
         return userService.findAll();
     }
 
-    @GetMapping("/login/{email}")
+    @GetMapping("/email/{email}")
     public User getUserByLogin(@PathVariable String email) {
         return userService.findByEmail(email);
     }
 
     @RequestMapping(value="/signup", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity saveUser(@RequestBody User user, BindingResult result){
-        userValidator.validate(user,result);
-        if(result.hasErrors()){
-            return ResponseEntity.badRequest().body(result.getAllErrors());
-        }
+//        userValidator.validate(user,result);
+//        if(result.hasErrors()){
+//            return ResponseEntity.badRequest().body(result.getAllErrors());
+//        }
         return ResponseEntity.ok(userService.save(user));
     }
 
