@@ -30,7 +30,7 @@ public class RentController {
         rentService.delete(id);
     }
 
-    @SuppressWarnings("Duplicates")
+
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public ResponseEntity<Rent> getRentById(@PathVariable(name = "id") Long id){
         return ResponseEntity.ok(rentService.findById(id));

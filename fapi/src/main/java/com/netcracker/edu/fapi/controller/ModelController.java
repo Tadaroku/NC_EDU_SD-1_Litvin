@@ -1,6 +1,5 @@
 package com.netcracker.edu.fapi.controller;
 
-import com.netcracker.edu.fapi.models.Car;
 import com.netcracker.edu.fapi.models.Model;
 import com.netcracker.edu.fapi.service.ModelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ public class ModelController {
         modelService.delete(id);
     }
 
-    @SuppressWarnings("Duplicates")
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Model> getModelById(@PathVariable(name = "id") Long id) {
         return ResponseEntity.ok(modelService.findById(id));

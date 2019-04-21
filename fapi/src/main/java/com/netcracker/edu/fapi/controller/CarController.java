@@ -30,7 +30,6 @@ public class CarController {
         carService.delete(id);
     }
 
-    @SuppressWarnings("Duplicates")
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public ResponseEntity<Car> getCarById(@PathVariable(name = "id") Long id){
         return ResponseEntity.ok(carService.findById(id));
