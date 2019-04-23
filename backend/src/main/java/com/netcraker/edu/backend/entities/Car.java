@@ -16,6 +16,8 @@ public class Car extends BaseEntity {
         super(id);
     }
 
+
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Status status;
@@ -30,7 +32,7 @@ public class Car extends BaseEntity {
     private String transmission;
 
     @Column(name = "ENABLED", nullable = false)
-    private boolean condition = true;
+    private boolean condition;
 
     @Column(nullable = false)
     private String color;
