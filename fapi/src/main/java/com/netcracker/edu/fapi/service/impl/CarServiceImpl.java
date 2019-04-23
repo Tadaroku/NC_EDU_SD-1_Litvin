@@ -19,25 +19,25 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<Car> findAll() {
         RestTemplate restTemplate = new RestTemplate();
-        Car[] carsResponce = restTemplate.getForObject(backendServerUrl + "/api/car", Car[].class);
+        Car[] carsResponce = restTemplate.getForObject(backendServerUrl + "/api/v1/car", Car[].class);
         return carsResponce == null ? Collections.emptyList() : Arrays.asList(carsResponce);
     }
 
     @Override
     public Car save(Car car) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "/api/car", car, Car.class).getBody();
+        return restTemplate.postForEntity(backendServerUrl + "/api/v1/car", car, Car.class).getBody();
     }
 
     @Override
     public void delete(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(backendServerUrl + "/api/car/" + id);
+        restTemplate.delete(backendServerUrl + "/api/v1/car/" + id);
     }
 
     @Override
     public Car findById(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl + "/api/car/" + id, Car.class);
+        return restTemplate.getForObject(backendServerUrl + "/api/v1/car/" + id, Car.class);
     }
 }

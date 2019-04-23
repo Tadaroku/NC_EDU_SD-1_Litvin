@@ -6,18 +6,30 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class User {
 
     private long id;
-    private String email;
+    private String login;
     private String password;
     private String role;
+    private String name;
+    private String surname;
+    private String lastname;
+    private String bookingHistory;
+    private String phoneNumber;
+    private String address;
 
     public User() {
     }
 
-    public User(long id, String email, String password, String role) {
+    public User(long id, String login, String password, String role, String name, String surname, String lastname, String bookingHistory, String phoneNumber, String address) {
         this.id = id;
-        this.email = email;
+        this.login = login;
         this.password = password;
         this.role = role;
+        this.name = name;
+        this.surname = surname;
+        this.lastname = lastname;
+        this.bookingHistory = bookingHistory;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 
     public long getId() {
@@ -28,12 +40,12 @@ public class User {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLogin() {
+        return login;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {
@@ -52,13 +64,67 @@ public class User {
         this.role = role;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getBookingHistory() {
+        return bookingHistory;
+    }
+
+    public void setBookingHistory(String bookingHistory) {
+        this.bookingHistory = bookingHistory;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", email='" + email + '\'' +
+                ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", bookingHistory='" + bookingHistory + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 }

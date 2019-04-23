@@ -19,25 +19,25 @@ public class RentServiceImpl implements RentService {
     @Override
     public List<Rent> findAll() {
         RestTemplate restTemplate = new RestTemplate();
-        Rent[] rentsResponse = restTemplate.getForObject(backendServerUrl + "/api/rent", Rent[].class);
+        Rent[] rentsResponse = restTemplate.getForObject(backendServerUrl + "/api/v1/rent", Rent[].class);
         return rentsResponse == null ? Collections.emptyList() : Arrays.asList(rentsResponse);
     }
 
     @Override
     public Rent save(Rent rent) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "/api/rent", rent, Rent.class).getBody();
+        return restTemplate.postForEntity(backendServerUrl + "/api/v1/rent", rent, Rent.class).getBody();
     }
 
     @Override
     public void delete(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(backendServerUrl + "/api/rent/" + id);
+        restTemplate.delete(backendServerUrl + "/api/v1/rent/" + id);
     }
 
     @Override
     public Rent findById(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl + "/api/rent/" + id, Rent.class);
+        return restTemplate.getForObject(backendServerUrl + "/api/v1/rent/" + id, Rent.class);
     }
 }

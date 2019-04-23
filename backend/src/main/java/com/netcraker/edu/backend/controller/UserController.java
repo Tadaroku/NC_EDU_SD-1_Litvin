@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/v1/user")
 public class UserController {
 
     private UserService userService;
@@ -21,9 +21,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/find/{email}", method = RequestMethod.GET)
-    public ResponseEntity<User> getUserByEmail(@PathVariable(name = "email") String email) {
-        User user = userService.findByEmail(email);
+    @RequestMapping(value = "/login/{login}", method = RequestMethod.GET)
+    public ResponseEntity<User> getUserByLogin(@PathVariable(name = "login") String login) {
+        User user = userService.findByLogin(login);
         return ResponseEntity.ok(user);
     }
 

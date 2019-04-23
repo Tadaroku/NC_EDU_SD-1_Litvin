@@ -17,9 +17,9 @@ public class User extends BaseEntity {
         super(id);
     }
 
-    public User(long id, String email, String password, String name, String surname, String lastname, String bookingHistory, String phoneNumber, String address) {
+    public User(long id, String login, String password, String name, String surname, String lastname, String bookingHistory, String phoneNumber, String address) {
         super(id);
-        this.email = email;
+        this.login = login;
         this.password = password;
         this.name = name;
         this.surname = surname;
@@ -30,7 +30,7 @@ public class User extends BaseEntity {
     }
 
     @Column(nullable = false)
-    private String email;
+    private String login;
 
     @Column(nullable = false)
     private String password;
@@ -61,12 +61,12 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Rent> rents = new HashSet<>();
 
-    public String getEmail() {
-        return email;
+    public String getLogin() {
+        return login;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {
@@ -149,7 +149,7 @@ public class User extends BaseEntity {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         User user = (User) o;
-        return Objects.equals(email, user.email) &&
+        return Objects.equals(login, user.login) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(name, user.name) &&
                 Objects.equals(surname, user.surname) &&
@@ -161,13 +161,13 @@ public class User extends BaseEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), email, password, name, surname, lastname, bookingHistory, phoneNumber, address);
+        return Objects.hash(super.hashCode(), login, password, name, surname, lastname, bookingHistory, phoneNumber, address);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "email='" + email + '\'' +
+                "login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +

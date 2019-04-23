@@ -1,8 +1,8 @@
 package com.netcracker.edu.fapi.controller;
 
+import com.netcracker.edu.fapi.models.LoginUser;
 import com.netcracker.edu.fapi.models.User;
 import com.netcracker.edu.fapi.service.UserService;
-import com.netcracker.edu.fapi.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,24 +19,24 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private UserValidator userValidator;
+//    @Autowired
+//    private UserValidator userValidator;
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userService.findAll();
     }
 
-    @GetMapping("/email/{email}")
-    public User getUserByLogin(@PathVariable String email) {
-        return userService.findByEmail(email);
+    @GetMapping("/login/{login}")
+    public LoginUser getUserByLogin(@PathVariable String login) {
+        return userService.findByLogin(login);
     }
 
-    @RequestMapping(value="/signup", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity saveUser(@RequestBody User user, BindingResult result){
-//        userValidator.validate(user,result);
-//        if(result.hasErrors()){
+    @RequestMapping(value = "/signup", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity saveUser(@RequestBody User user, BindingResult result) {
+//        userValidator.validate(user, result);
+//        if (result.hasErrors()) {
 //            return ResponseEntity.badRequest().body(result.getAllErrors());
 //        }
         return ResponseEntity.ok(userService.save(user));
@@ -47,8 +47,8 @@ public class UserController {
         userService.delete(id);
     }
 
-    @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public ResponseEntity<User> getUserById(@PathVariable(name = "id") Long id){
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<User> getUserById(@PathVariable(name = "id") Long id) {
         return ResponseEntity.ok(userService.findById(id));
     }
 }

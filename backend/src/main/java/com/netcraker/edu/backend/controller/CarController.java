@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/car")
+@RequestMapping("/api/v1/car")
 public class CarController {
 
     private CarService carService;
