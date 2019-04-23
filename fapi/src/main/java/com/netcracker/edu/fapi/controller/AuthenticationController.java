@@ -23,7 +23,7 @@ public class AuthenticationController {
     @Autowired
     private TokenProvider jwtTokenUtil;
 
-    @RequestMapping(value = "/generate-token", method = RequestMethod.POST)
+    @RequestMapping(value = "/generate", method = RequestMethod.POST)
     public ResponseEntity register(@RequestBody LoginUser loginUser) throws AuthenticationException {
 
         final Authentication authentication = authenticationManager.authenticate(
