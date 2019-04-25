@@ -53,7 +53,7 @@ public class Model extends BaseEntity {
         this.description = description;
     }
 
-    @JsonIgnore
+//    @JsonIgnore
     public Set<Car> getCars() {
         return cars;
     }

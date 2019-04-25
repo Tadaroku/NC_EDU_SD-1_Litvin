@@ -2,13 +2,24 @@ package com.netcraker.edu.backend.dto;
 
 import com.netcraker.edu.backend.dto.dto.*;
 import com.netcraker.edu.backend.entities.*;
+import com.netcraker.edu.backend.repository.UserInfoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+@Service
 public class Converter {
 
-    public static UserDto userEntityToUserDtoConverter(User user) {
+    private UserInfoRepository userInfoRepository;
+
+    @Autowired
+    public Converter(UserInfoRepository userInfoRepository) {
+        this.userInfoRepository = userInfoRepository;
+    }
+
+    public UserDto userEntityToUserDtoConverter(User user) {
         UserDto userDto = null;
         if (user != null) {
             userDto = new UserDto();
@@ -19,17 +30,7 @@ public class Converter {
         return userDto;
     }
 
-    public static RoleDto roleEntityToRoleDtoConverter(Role role) {
-        RoleDto roleDto = null;
-        if (role != null) {
-            roleDto = new RoleDto();
-            roleDto.setId(role.getId());
-            roleDto.setRole(role.getRoleName());
-        }
-        return roleDto;
-    }
-
-    public static UserInfoDto userInfoEntityToUserInfoDtoConverter(UserInfo userInfo) {
+    public UserInfoDto userInfoEntityToUserInfoDtoConverter(UserInfo userInfo) {
         UserInfoDto userInfoDto = null;
         if (userInfo != null) {
             userInfoDto = new UserInfoDto();
@@ -45,7 +46,7 @@ public class Converter {
         return userInfoDto;
     }
 
-    public static RentDto rentEntityToRentDtoConverter(Rent rent) {
+    public RentDto rentEntityToRentDtoConverter(Rent rent) {
         RentDto rentDto = null;
         if (rent != null) {
             rentDto = new RentDto();
@@ -59,7 +60,7 @@ public class Converter {
         return rentDto;
     }
 
-    public static ModelDto modelEntityToModelDtoConverter(Model model) {
+    public ModelDto modelEntityToModelDtoConverter(Model model) {
         ModelDto modelDto = null;
         if (model != null) {
             modelDto = new ModelDto();
@@ -71,7 +72,7 @@ public class Converter {
         return modelDto;
     }
 
-    public static CarDto carEntityToCarDtoConverter(Car car) {
+    public CarDto carEntityToCarDtoConverter(Car car) {
         CarDto carDto = null;
         if (car != null) {
             carDto = new CarDto();
@@ -80,14 +81,15 @@ public class Converter {
             carDto.setEngineType(car.getEngineType());
             carDto.setMileage(car.getMileage());
             carDto.setProvider(car.getProvider());
-            carDto.setYearOfIssue(Integer.parseInt(car.getTransmission()));
+            carDto.setTransmission(car.getTransmission());
+            carDto.setYearOfIssue(car.getYearOfIssue());
             carDto.setStatus(String.valueOf(car.getStatus()));
             carDto.setActive(car.isCondition());
         }
         return carDto;
     }
 
-    private static String localDateToStringConverter(LocalDate localDate) {
+    private String localDateToStringConverter(LocalDate localDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         if (localDate != null) {
             return localDate.format(formatter);

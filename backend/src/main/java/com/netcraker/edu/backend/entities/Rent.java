@@ -70,7 +70,7 @@ public class Rent extends BaseEntity {
         this.user = user;
     }
 
-    @JsonIgnore
+//    @JsonIgnore
     public Set<Car> getCars() {
         return cars;
     }

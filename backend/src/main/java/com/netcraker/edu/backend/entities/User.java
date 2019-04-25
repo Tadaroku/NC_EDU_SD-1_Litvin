@@ -17,10 +17,11 @@ public class User extends BaseEntity {
         super(id);
     }
 
-    public User(long id, String login, String password) {
+    public User(long id, String login, String password, String role) {
         super(id);
         this.login = login;
         this.password = password;
+        this.role=role;
     }
 
     @Column(nullable = false)
@@ -29,10 +30,8 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "role_to_user", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    @Column(nullable = false)
+    private String role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Rent> rents = new HashSet<>();
@@ -57,16 +56,15 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
-    @JsonIgnore
-    public Set<Role> getRoles() {
-        return roles;
+    public String getRole() {
+        return role;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-    @JsonIgnore
+    //    @JsonIgnore
     public Set<Rent> getRents() {
         return rents;
     }
@@ -75,7 +73,7 @@ public class User extends BaseEntity {
         this.rents = rents;
     }
 
-    @JsonIgnore
+//    @JsonIgnore
     public UserInfo getUserInfo() {
         return userInfo;
     }
@@ -91,11 +89,21 @@ public class User extends BaseEntity {
         if (!super.equals(o)) return false;
         User user = (User) o;
         return Objects.equals(login, user.login) &&
-                Objects.equals(password, user.password);
+                Objects.equals(password, user.password) &&
+                Objects.equals(role, user.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), login, password);
+        return Objects.hash(super.hashCode(), login, password, role);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }

@@ -1,9 +1,0 @@
-package com.netcraker.edu.backend.repository;
-
-import com.netcraker.edu.backend.entities.Role;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-@Repository
-public interface RoleRepository extends JpaRepository<Role, Long> {
-}
