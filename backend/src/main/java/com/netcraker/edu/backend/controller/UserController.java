@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/user")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     private UserService userService;
@@ -53,5 +53,7 @@ public class UserController {
 
         return ResponseEntity.ok(user.get());
     }
+
+
 
 }

@@ -26,14 +26,14 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public User findByLogin(String login) {
         RestTemplate restTemplate = new RestTemplate();
-        User user = restTemplate.getForObject(backendServerUrl + "/api/v1/user/login/" + login, User.class);
+        User user = restTemplate.getForObject(backendServerUrl + "/api/v1/users/login/" + login, User.class);
         return user;
     }
 
     @Override
     public List<User> findAll() {
         RestTemplate restTemplate = new RestTemplate();
-        User[] usersResponse = restTemplate.getForObject(backendServerUrl + "/api/v1/user", User[].class);
+        User[] usersResponse = restTemplate.getForObject(backendServerUrl + "/api/v1/users", User[].class);
         return usersResponse == null ? Collections.emptyList() : Arrays.asList(usersResponse);
     }
 
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public User save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "/api/v1/user", user, User.class).getBody();
+        return restTemplate.postForEntity(backendServerUrl + "/api/v1/users", user, User.class).getBody();
     }
 
     @Override

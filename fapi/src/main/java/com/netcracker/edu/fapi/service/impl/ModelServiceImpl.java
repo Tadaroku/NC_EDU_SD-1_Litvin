@@ -19,25 +19,25 @@ public class ModelServiceImpl implements ModelService {
     @Override
     public List<Model> findAll() {
         RestTemplate restTemplate = new RestTemplate();
-        Model[] modelsResponce = restTemplate.getForObject(backendServerUrl + "/api/v1/model", Model[].class);
+        Model[] modelsResponce = restTemplate.getForObject(backendServerUrl + "/api/v1/models", Model[].class);
         return modelsResponce == null ? Collections.emptyList() : Arrays.asList(modelsResponce);
     }
 
     @Override
     public Model save(Model model) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "/api/v1/model", model, Model.class).getBody();
+        return restTemplate.postForEntity(backendServerUrl + "/api/v1/models", model, Model.class).getBody();
     }
 
     @Override
     public void delete(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(backendServerUrl + "/api/v1/model/" + id);
+        restTemplate.delete(backendServerUrl + "/api/v1/models/" + id);
     }
 
     @Override
     public Model findById(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl + "/api/v1/model/" + id, Model.class);
+        return restTemplate.getForObject(backendServerUrl + "/api/v1/models/" + id, Model.class);
     }
 }
