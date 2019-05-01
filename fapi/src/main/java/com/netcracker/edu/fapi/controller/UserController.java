@@ -4,7 +4,8 @@ import com.netcracker.edu.fapi.models.User;
 import com.netcracker.edu.fapi.service.UserService;
 import com.netcracker.edu.fapi.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,11 +15,15 @@ import java.util.List;
 @RequestMapping("/api/v1/users")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    private final UserValidator userValidator;
 
     @Autowired
-    UserValidator userValidator;
+    public UserController(UserService userService, UserValidator userValidator) {
+        this.userService = userService;
+        this.userValidator = userValidator;
+    }
 
 
 
@@ -34,7 +39,12 @@ public class UserController {
     }
 
     @RequestMapping(value="/signup", method = RequestMethod.POST, produces = "application/json")
-    public User saveUser(@RequestBody User user){
-        return userService.save(user);
+    public ResponseEntity saveUser(@RequestBody User user, BindingResult bindingResult){
+        userValidator.validate(user, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
+        }
+        return ResponseEntity.ok(userService.save(user));
     }
-}
+    }
+

@@ -26,24 +26,21 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         User user = (User) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "login", "NotEmpty");
-
         Matcher loginMatcher = Pattern.compile("^[a-zA-Z0-9._-]{3,}$").matcher(user.getLogin());
         if (!loginMatcher.matches()){
             errors.rejectValue("login", "login is not correct");
         }
         if (user.getLogin().length() < 4 || user.getLogin().length() > 32) {
-            errors.rejectValue("login", "email length is not correct");
+            errors.rejectValue("login", "login length is not correct");
         }
         if(!(userService.findByLogin(user.getLogin())==null)){
             errors.rejectValue("username", "username is already exists");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
-
-        Matcher passwordMatcher = Pattern.compile("((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{8,40})").matcher(user.getPassword());
+        Matcher passwordMatcher = Pattern.compile("^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$").matcher(user.getPassword());
         if (!passwordMatcher.matches()){
-            errors.rejectValue("login", "login is not correct");
+            errors.rejectValue("password", "password is not correct");
         }
         if (user.getPassword().length() < 4) {
             errors.rejectValue("password", "password length is not correct");

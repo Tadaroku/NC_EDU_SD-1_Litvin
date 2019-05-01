@@ -4,6 +4,7 @@ import com.netcracker.edu.fapi.models.User;
 import com.netcracker.edu.fapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -38,10 +39,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public User save(User user) {
+    public ResponseEntity<User> save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "/api/v1/users", user, User.class).getBody();
+        return restTemplate.postForEntity(backendServerUrl + "/api/v1/users", user, User.class);
     }
 
     @Override
