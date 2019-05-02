@@ -46,6 +46,21 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
+    public User deleteUser(Long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.delete(backendServerUrl + "/api/v1/users/" + id);
+        return null;
+    }
+
+    @Override
+    public User findByPhoneNumber(String phoneNumber) {
+        RestTemplate restTemplate = new RestTemplate();
+        User user = restTemplate.getForObject(backendServerUrl + "/api/v1/users/phoneNumber/" + phoneNumber, User.class);
+        return user;
+    }
+
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = findByLogin(username);
         if (user == null) {

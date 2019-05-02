@@ -17,11 +17,13 @@ public class User extends BaseEntity {
         super(id);
     }
 
-    public User(long id, String login, String password, String role) {
-        super(id);
+    public User(String login, String password, String role, String name, String phoneNumber, String address) {
         this.login = login;
         this.password = password;
-        this.role=role;
+        this.role = role;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 
     @Column(nullable = false)
@@ -32,13 +34,18 @@ public class User extends BaseEntity {
 
     @Column(nullable = false)
     private String role;
+    @Column(nullable = false)
+    private String name;
+
+    @Column(name = "phone_number", nullable = false)
+    private String phoneNumber;
+
+    @Column(nullable = false)
+    private String address;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Rent> rents = new HashSet<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="info_id")
-    private UserInfo userInfo;
 
     public String getLogin() {
         return login;
@@ -64,6 +71,30 @@ public class User extends BaseEntity {
         this.role = role;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     //    @JsonIgnore
     public Set<Rent> getRents() {
         return rents;
@@ -73,14 +104,6 @@ public class User extends BaseEntity {
         this.rents = rents;
     }
 
-//    @JsonIgnore
-    public UserInfo getUserInfo() {
-        return userInfo;
-    }
-
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo = userInfo;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -88,20 +111,26 @@ public class User extends BaseEntity {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         User user = (User) o;
-        return Objects.equals(login, user.login) &&
+        return Objects.equals(name, user.name) &&
+                Objects.equals(phoneNumber, user.phoneNumber) &&
+                Objects.equals(address, user.address) &&
+                Objects.equals(login, user.login) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(role, user.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), login, password, role);
+        return Objects.hash(super.hashCode(), name, phoneNumber, address, login, password, role);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "login='" + login + '\'' +
+                "name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 '}';

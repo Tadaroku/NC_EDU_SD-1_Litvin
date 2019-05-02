@@ -2,7 +2,6 @@ package com.netcraker.edu.backend.dto;
 
 import com.netcraker.edu.backend.dto.dto.*;
 import com.netcraker.edu.backend.entities.*;
-import com.netcraker.edu.backend.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +11,7 @@ import java.time.format.DateTimeFormatter;
 @Service
 public class Converter {
 
-    private UserInfoRepository userInfoRepository;
 
-    @Autowired
-    public Converter(UserInfoRepository userInfoRepository) {
-        this.userInfoRepository = userInfoRepository;
-    }
 
     public UserDto userEntityToUserDtoConverter(User user) {
         UserDto userDto = null;
@@ -30,21 +24,6 @@ public class Converter {
         return userDto;
     }
 
-    public UserInfoDto userInfoEntityToUserInfoDtoConverter(UserInfo userInfo) {
-        UserInfoDto userInfoDto = null;
-        if (userInfo != null) {
-            userInfoDto = new UserInfoDto();
-            userInfoDto.setId(userInfo.getId());
-            userInfoDto.setName(userInfo.getName());
-            userInfoDto.setSurname(userInfo.getSurname());
-            userInfoDto.setLastname(userInfo.getLastname());
-            userInfoDto.setAddress(userInfo.getAddress());
-            userInfoDto.setPhoneNumber(userInfo.getPhoneNumber());
-            userInfoDto.setBookingHistory(userInfo.getBookingHistory());
-
-        }
-        return userInfoDto;
-    }
 
     public RentDto rentEntityToRentDtoConverter(Rent rent) {
         RentDto rentDto = null;

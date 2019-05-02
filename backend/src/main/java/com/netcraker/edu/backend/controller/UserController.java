@@ -43,17 +43,22 @@ public class UserController {
     }
 
     @SuppressWarnings("Duplicates")
-    @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public ResponseEntity<User> getUserById(@PathVariable(name = "id") Long id){
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<User> getUserById(@PathVariable(name = "id") Long id) {
         Optional<User> user = userService.findById(id);
 
-        if (!user.isPresent()){
+        if (!user.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         return ResponseEntity.ok(user.get());
     }
 
+    @RequestMapping(value = "/phoneNumber/{phoneNumber}", method = RequestMethod.GET)
+    public ResponseEntity<User> getUserByPhoneNumber(@PathVariable(name = "phoneNumber") String phoneNumber) {
+        User user = userService.findByPhoneNumber(phoneNumber);
+        return ResponseEntity.ok(user);
 
+    }
 
 }

@@ -4,6 +4,7 @@ import com.netcracker.edu.fapi.models.User;
 import com.netcracker.edu.fapi.service.UserService;
 import com.netcracker.edu.fapi.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -46,5 +47,15 @@ public class UserController {
         }
         return ResponseEntity.ok(userService.save(user));
     }
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?>  delete(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping("/phoneNumber/{phoneNumber}")
+    public User getUserByPhoneNumber(@PathVariable String phoneNumber) {
+        return userService.findByPhoneNumber(phoneNumber);
+    }
+}
 

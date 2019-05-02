@@ -10,4 +10,6 @@ public interface UserService {
     User findByLogin(String login);
     List<User> findAll();
     ResponseEntity<User> save(User user);
+    User deleteUser(Long id);
+    User findByPhoneNumber(String phoneNumber);
 }

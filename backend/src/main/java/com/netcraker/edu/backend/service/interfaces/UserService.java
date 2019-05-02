@@ -12,6 +12,7 @@ public interface UserService {
     User findByLogin(String login);
     User save(User user);
     void delete(Long id);
+    User findByPhoneNumber(String phoneNumber);
 
     Optional<User> findById(Long id);
 }

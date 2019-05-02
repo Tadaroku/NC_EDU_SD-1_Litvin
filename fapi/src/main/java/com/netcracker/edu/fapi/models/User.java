@@ -9,15 +9,21 @@ public class User {
     private String login;
     private String password;
     private String role;
+    private String name;
+    private String address;
+    private String phoneNumber;
 
     public User() {
     }
 
-    public User(long id, String login, String password, String role) {
+    public User(long id, String login, String password, String role, String name, String address, String phoneNumber) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.role = role;
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
     public long getId() {
@@ -52,6 +58,30 @@ public class User {
         this.role = role;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -59,6 +89,9 @@ public class User {
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
 }
