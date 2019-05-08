@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface UserService {
 
-    User findByLogin(String login);
+    User findByUsername(String username);
     List<User> findAll();
-    ResponseEntity<User> save(User user);
+    User save(User user);
     User deleteUser(Long id);
     User findByPhoneNumber(String phoneNumber);
 }

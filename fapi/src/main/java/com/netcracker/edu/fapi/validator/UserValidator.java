@@ -26,14 +26,14 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         User user = (User) o;
 
-        Matcher loginMatcher = Pattern.compile("^[a-zA-Z0-9._-]{3,}$").matcher(user.getLogin());
+        Matcher loginMatcher = Pattern.compile("^[a-zA-Z0-9._-]{3,}$").matcher(user.getUsername());
         if (!loginMatcher.matches()){
             errors.rejectValue("login", "login is not correct");
         }
-        if (user.getLogin().length() < 4 || user.getLogin().length() > 32) {
+        if (user.getUsername().length() < 4 || user.getUsername().length() > 32) {
             errors.rejectValue("login", "login length is not correct");
         }
-        if(!(userService.findByLogin(user.getLogin())==null)){
+        if(!(userService.findByUsername(user.getUsername())==null)){
             errors.rejectValue("username", "username is already exists");
         }
 

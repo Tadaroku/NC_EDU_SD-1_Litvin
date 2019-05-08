@@ -34,9 +34,9 @@ public class UserController {
         return userService.findAll();
     }
 
-    @GetMapping("/login/{login}")
-    public User getUserByLogin(@PathVariable String login) {
-        return userService.findByLogin(login);
+    @GetMapping("/username/{username}")
+    public User getUserByLogin(@PathVariable String username) {
+        return userService.findByUsername(username);
     }
 
     @RequestMapping(value="/signup", method = RequestMethod.POST, produces = "application/json")
@@ -47,6 +47,7 @@ public class UserController {
         }
         return ResponseEntity.ok(userService.save(user));
     }
+
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<?>  delete(@PathVariable Long id) {
         userService.deleteUser(id);

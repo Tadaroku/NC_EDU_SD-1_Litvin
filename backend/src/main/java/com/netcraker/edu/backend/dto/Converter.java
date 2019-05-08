@@ -2,7 +2,6 @@ package com.netcraker.edu.backend.dto;
 
 import com.netcraker.edu.backend.dto.dto.*;
 import com.netcraker.edu.backend.entities.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,7 +17,7 @@ public class Converter {
         if (user != null) {
             userDto = new UserDto();
             userDto.setId(user.getId());
-            userDto.setLogin(user.getLogin());
+            userDto.setLogin(user.getUsername());
             userDto.setPassword(user.getPassword());
         }
         return userDto;

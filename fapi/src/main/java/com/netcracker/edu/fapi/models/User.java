@@ -6,22 +6,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class User {
 
     private long id;
-    private String login;
+    private String username;
     private String password;
     private String role;
     private String name;
+    private String surname;
     private String address;
     private String phoneNumber;
 
     public User() {
     }
 
-    public User(long id, String login, String password, String role, String name, String address, String phoneNumber) {
+    public User(long id, String username, String password, String role, String name, String surname, String address, String phoneNumber) {
         this.id = id;
-        this.login = login;
+        this.username = username;
         this.password = password;
         this.role = role;
         this.name = name;
+        this.surname = surname;
         this.address = address;
         this.phoneNumber = phoneNumber;
     }
@@ -34,12 +36,12 @@ public class User {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -66,6 +68,14 @@ public class User {
         this.name = name;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -86,10 +96,11 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", login='" + login + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
                 ", address='" + address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 '}';

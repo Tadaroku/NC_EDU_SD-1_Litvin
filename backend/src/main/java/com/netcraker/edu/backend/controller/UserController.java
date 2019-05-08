@@ -21,9 +21,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/login/{login}", method = RequestMethod.GET)
-    public ResponseEntity<User> getUserByLogin(@PathVariable(name = "login") String login) {
-        User user = userService.findByLogin(login);
+    @RequestMapping(value = "/username/{username}", method = RequestMethod.GET)
+    public ResponseEntity<User> getUserByLogin(@PathVariable(name = "username") String username) {
+        User user = userService.findByUsername(username);
         return ResponseEntity.ok(user);
     }
 

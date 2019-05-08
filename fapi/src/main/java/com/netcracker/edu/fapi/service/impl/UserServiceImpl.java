@@ -4,7 +4,6 @@ import com.netcracker.edu.fapi.models.User;
 import com.netcracker.edu.fapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -25,9 +24,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public User findByLogin(String login) {
+    public User findByUsername(String username) {
         RestTemplate restTemplate = new RestTemplate();
-        User user = restTemplate.getForObject(backendServerUrl + "/api/v1/users/login/" + login, User.class);
+        User user = restTemplate.getForObject(backendServerUrl + "/api/v1/users/username/" + username, User.class);
         return user;
     }
 
@@ -39,10 +38,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public ResponseEntity<User> save(User user) {
+    public User save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "/api/v1/users", user, User.class);
+        return restTemplate.postForEntity(backendServerUrl + "/api/v1/users", user, User.class).getBody();
     }
 
     @Override
@@ -62,11 +61,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = findByLogin(username);
+        User user = findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
-        return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), getAuthority(user));
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority(user));
     }
 
     private Set<SimpleGrantedAuthority> getAuthority(User user) {

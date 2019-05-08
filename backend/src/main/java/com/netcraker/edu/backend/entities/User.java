@@ -1,7 +1,5 @@
 package com.netcraker.edu.backend.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -17,42 +15,47 @@ public class User extends BaseEntity {
         super(id);
     }
 
-    public User(String login, String password, String role, String name, String phoneNumber, String address) {
-        this.login = login;
+    public User(String username, String password, String role, String name, String surname, String phoneNumber, String address) {
+        this.username = username;
         this.password = password;
         this.role = role;
         this.name = name;
+        this.surname = surname;
         this.phoneNumber = phoneNumber;
         this.address = address;
     }
 
     @Column(nullable = false)
-    private String login;
+    private String username;
 
     @Column(nullable = false)
     private String password;
 
     @Column(nullable = false)
     private String role;
-    @Column(nullable = false)
+
+    @Column
     private String name;
 
-    @Column(name = "phone_number", nullable = false)
+    @Column
+    private String surname;
+
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(nullable = false)
+    @Column
     private String address;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Rent> rents = new HashSet<>();
 
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -77,6 +80,14 @@ public class User extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getPhoneNumber() {
@@ -111,28 +122,30 @@ public class User extends BaseEntity {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         User user = (User) o;
-        return Objects.equals(name, user.name) &&
-                Objects.equals(phoneNumber, user.phoneNumber) &&
-                Objects.equals(address, user.address) &&
-                Objects.equals(login, user.login) &&
+        return Objects.equals(username, user.username) &&
                 Objects.equals(password, user.password) &&
-                Objects.equals(role, user.role);
+                Objects.equals(role, user.role) &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(surname, user.surname) &&
+                Objects.equals(phoneNumber, user.phoneNumber) &&
+                Objects.equals(address, user.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), name, phoneNumber, address, login, password, role);
+        return Objects.hash(super.hashCode(), username, password, role, name, surname, phoneNumber, address);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", address='" + address + '\'' +
-                ", login='" + login + '\'' +
+                "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 }
