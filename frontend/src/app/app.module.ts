@@ -1,23 +1,14 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import { BsDropdownModule } from "ngx-bootstrap/dropdown";
-import { TooltipModule } from "ngx-bootstrap/tooltip";
-import { ModalModule } from "ngx-bootstrap/modal";
-import { FormsModule } from "@angular/forms";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import { AppComponent } from "./app.component";
-import {HttpClientModule} from "@angular/common/http";
-import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
-import {RouterModule, Routes} from "@angular/router";
-import {NotFoundComponent} from "./modules/layout/components/404/not-found.component";
-import {LayoutModule} from "./modules/layout/layout.module";
-import {HomeComponent} from "./modules/layout/components/home/home.component";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { LayoutModule } from './modules/layout/layout.module';
+import { BsModalService, BsDropdownModule, ModalModule, TooltipModule, PaginationModule } from 'ngx-bootstrap';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-const appRoutes: Routes = [
-  {path: "", component: HomeComponent},
-  {path: "home", component: HomeComponent},
-  {path: "**", component: NotFoundComponent}
-];
 
 @NgModule({
   declarations: [
@@ -25,16 +16,19 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    AppRoutingModule,
     LayoutModule,
-    HttpClientModule,
-    Ng4LoadingSpinnerModule.forRoot(),
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    HttpClientModule
+    
   ],
-  providers: [],
+  providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }        
+  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
