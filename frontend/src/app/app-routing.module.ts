@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './modules/layout/home/home.component';
 import { LoginComponent } from './modules/layout/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
-import { AdminComponent } from './modules/layout/admin/admin.component';
+
 
 
 const routes: Routes = [
@@ -16,12 +16,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
-  {
-    path: 'admin',
-    component: AdminComponent,
-    canActivate: [AuthGuard],
-    data: {roles:['ADMIN']}
-  },
+
   { path: '**', redirectTo: '' }
 
 ];

@@ -3,8 +3,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.less']
+  templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
 
@@ -13,7 +12,7 @@ export class HomeComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    if(this.authenticationService.currentUsersRole == "MANAGER") {
+    if(this.authenticationService.currentUsersRole == "PROJECT_MANAGER") {
       this.isProjectManager = true;
     }
   }

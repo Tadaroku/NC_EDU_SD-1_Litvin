@@ -16,15 +16,15 @@ export class UserService {
   }
 
   getById(id: string): Observable<User[]> {
-    return this.http.get<User[]>(`${environment.apiUrl}/api/v1/users/getByProjectId/` + id);
+    return this.http.get<User[]>(`${environment.apiUrl}/api/v1/users/` + id);
   }
 
-  getUsersPage(currentPage: number, pageSize: number, sort: string): Observable<User[]> {
-    return this.http.get<User[]>(`${environment.apiUrl}/api/v1/users/page?page=${currentPage}&size=${pageSize}&sort=${sort}`);
-  }
+  // getUsersPage(currentPage: number, pageSize: number, sort: string): Observable<User[]> {
+  //   return this.http.get<User[]>(`${environment.apiUrl}/api/v1/users/page?page=${currentPage}&size=${pageSize}&sort=${sort}`);
+  // }
 
-  deleteUser(id: string): Observable<void> {    
-    return this.http.delete<void>(`${environment.apiUrl}/api/v1/users/` + id);    
+  deleteUser(id: string): Observable<void> {
+    return this.http.delete<void>(`${environment.apiUrl}/api/v1/users/` + id);
   }
 
   saveUser(user: User): Observable<User> {

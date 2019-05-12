@@ -11,15 +11,15 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
   declarations: [
-    ],
+  ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,   
+    ReactiveFormsModule,
     FormsModule,
     BrowserModule,
-    RouterModule,  
+    RouterModule,
     HttpClientModule,
-    PaginationModule.forRoot(),   
+    PaginationModule.forRoot(),
   ],
   exports: [],
   entryComponents:[]

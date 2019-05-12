@@ -22,11 +22,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     HttpClientModule
-    
+
   ],
   providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }        
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
 
   bootstrap: [AppComponent]
